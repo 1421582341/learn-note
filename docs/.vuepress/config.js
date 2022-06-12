@@ -27,28 +27,47 @@ module.exports = {
         // children: [{ title: 'Welcome Page', path: '/' }]
       },
       {
-        title: 'Markdown学习',
-        path: '/handbook/Sample',
-        collapsable: false // 不折叠
-      },
-      {
         title: 'TODO',
         path: '/handbook/TODO',
         collapsable: false
       },
       {
+        title: 'Markdown学习',
+        path: '/handbook/Sample',
+        collapsable: false // 不折叠
+      },
+      {
         title: '烧肉のCSS小抄',
         path: '/handbook/LinkAnimation',
         collapsable: false,
-        children: [{ title: '带动画的链接', path: '/handbook/LinkAnimation' }]
+        children: [
+          {
+            title: 'CSS复习零碎笔记',
+            path: '/handbook/CSSNote'
+          },
+          {
+            title: '带动画的链接',
+            path: '/handbook/LinkAnimation'
+          }
+        ]
       },
       {
         title: '烧肉のJavaScript小抄',
         path: '/handbook/String',
         collapsable: false,
         children: [
-          { title: 'substr,substring和slice三者的比较', path: '/handbook/String' },
-          { title: '生成多维数组的方法', path: '/handbook/MultidimensionalArray' }
+          {
+            title: 'let,vat和const三者比较',
+            path: '/handbook/DifferenceBetweenLetAndVar'
+          },
+          {
+            title: 'substr,substring和slice三者的比较',
+            path: '/handbook/String'
+          },
+          {
+            title: '生成多维数组的方法',
+            path: '/handbook/MultidimensionalArray'
+          }
         ]
       }
     ]
