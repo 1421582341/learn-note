@@ -2,7 +2,7 @@ module.exports = {
   title: '生姜烧肉的博客',
   description: '生姜烧肉的博客',
   theme: 'reco',
-  base: '/learn-note',
+  base: '/learn-note/',
   locales: {
     '/': {
       lang: 'zh-CN'
