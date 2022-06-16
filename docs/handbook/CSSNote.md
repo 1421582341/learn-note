@@ -18,8 +18,10 @@ vertical-align: middle
   
 ## 花里胡哨的列表元素Marker
 ```css
-list-style-type: space-counter;
-list-style-type: "\1F44D"; // thumbs up sign
+li {
+  list-style-type: space-counter;
+  list-style-type: "\1F44D"; // thumbs up sign
+}
 ```
 
 ## 块级盒子和内联盒子对比
@@ -58,3 +60,29 @@ textarea {
 } 
 ```
 
+<!-- ## 让图片不再溢出
+
+```css
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+``` -->
+
+## 元素通过绝对定位整体居中
+
+```css
+h1 {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+}
+```
+## body元素自带外边距
+```css
+body {
+  margin: 0;
+}
+```
