@@ -67,6 +67,10 @@ module.exports = {
           {
             title: '生成多维数组的方法',
             path: '/handbook/MultidimensionalArray'
+          },
+          {
+            title: 'Promise简记',
+            path: '/handbook/Promise'
           }
         ]
       }
