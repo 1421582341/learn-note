@@ -73,6 +73,17 @@ module.exports = {
             path: '/handbook/Promise'
           }
         ]
+      },
+      {
+        title: '烧肉のLinux小抄',
+        path: '/handbook/Linux',
+        collapsable: false,
+        children: [
+          {
+            title: 'Linux笔记',
+            path: '/handbook/Linux'
+          }
+        ]
       }
     ]
   }
