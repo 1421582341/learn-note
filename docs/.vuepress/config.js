@@ -23,8 +23,7 @@ module.exports = {
       {
         title: 'Welcome',
         path: '/',
-        collapsable: false // 不折叠
-        // children: [{ title: 'Welcome Page', path: '/' }]
+        collapsable: false
       },
       {
         title: 'TODO',
@@ -35,6 +34,25 @@ module.exports = {
         title: 'Markdown学习',
         path: '/handbook/Sample',
         collapsable: false // 不折叠
+      },
+      {
+        title: '优秀项目阅读笔记',
+        path: '/handbook/NewBee1',
+        collapsable: false,
+        children: [
+          {
+            title: '新蜂项目阅读笔记（前篇）',
+            path: '/handbook/NewBee1'
+          },
+          {
+            title: '新蜂项目阅读笔记（中篇）',
+            path: '/handbook/NewBee2'
+          },
+          {
+            title: '新蜂项目阅读笔记（后篇）',
+            path: '/handbook/NewBee3'
+          }
+        ]
       },
       {
         title: '烧肉のCSS小抄',
