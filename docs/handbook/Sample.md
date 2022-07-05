@@ -86,4 +86,34 @@ ___粗斜体___
 
 \*\* 正常显示星号 \*\*
 
-标记一个```代码```
+标记一个`代码`
+
+***
+
+这回来更新一些高级技巧
+
+### 字体
+`<font face="华文彩云">笔记</font>`
+
+<font face="华文彩云">笔记</font>
+
+## 颜色
+```markdown
+<font color=red> 红色</font>
+<font color=blue> 蓝色</font>
+<font color=green> 绿色</font>
+```
+<font color=red> 红色</font>
+<font color=blue> 蓝色</font>
+<font color=green> 绿色</font>
+
+## 大小
+
+`<font face="华文新魏" size=5 color=blue> markdown</font>`
+<font face="华文新魏" size=5 color=blue> markdown</font>
+
+## 特殊符号
+
+`&#x270B;`
+
+&#x270B;
