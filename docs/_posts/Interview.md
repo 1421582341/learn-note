@@ -111,12 +111,12 @@ IE8以下浏览器的盒模型中定义的元素的宽高不包括内边距和�
 
 !important最高优先级
 
-|选择器|优先级|
-|:----:|:----:|
-|行内样式|1000|
-|id|0100|
-|类、伪类、属性|0010|
-|标签、伪元素|0001|
+|     选择器     | 优先级 |
+| :------------: | :----: |
+|    行内样式    |  1000  |
+|       id       |  0100  |
+| 类、伪类、属性 |  0010  |
+|  标签、伪元素  |  0001  |
 
 ## css3新增伪类
 
@@ -181,13 +181,6 @@ static默认值不定位
 
 background-image + background-position + background-repeat
 
-## html语义化的意义
-
-1. 页面清晰结构
-2. 有利于SEO、爬虫
-3. 方便设备解析（盲人阅读器）
-4. 代码可读性
-
 ## Doctype类型
 
 **混杂模式：** 很少使用，不同浏览器css渲染结果不同，省略<!DOCTYPE>可进入该模式
@@ -229,19 +222,6 @@ XHTML语法更严格
 5. getElementByTag
 6. getElementsByName
 7. getElementById
-
-## Html5新特性
-
-1. Drag and Drop API
-2. 语义化标签
-3. audio video
-4. canvas
-5. geolocation
-6. webstorage
-7. 表单控件             calender date time email url search
-8. webworker websocket
-9. 移除纯表现元素       basefont big center font s strike tt u
-10. 移除负面影响元素    frame frameset noframes
 
 ## IE6/7/8支持HTML5新标签
 
@@ -409,10 +389,6 @@ var声明的变量会提升至作用域顶部，但是不会提升至外部
 
 比如银行登录界面使用iframe嵌在页面上，用户登录就可以用js获取其账号
 
-## 原型和原型链
-
-每个构造函数都有一个原型对象，原型有一个属性指回构造函数，而实例有一个内部指针指向原型。如果原型是另一个原型的实例，如此循环，便构成了原型链
-
 ## 获取UA
 
 document.Browser
@@ -569,3 +545,273 @@ vue3的Proxy可以直接监听数组的变化
 * 内容改变则进行挂载和dom的调整
 * 旧节点移除后卸载节点
 
+
+****
+
+## js数据类型
+
+* 基本数据类型：Number、String、Boolean、Null、Undefined、Symbol、BigInt
+* 引用数据类型：Object、Array、Date、Function、RegExp
+
+基本存储在栈中，引用存储在堆中，栈中保存数据的引用地址
+
+栈内存是自动分配的，堆是动态分配的，不会自动释放
+
+## js变量和函数声明提升
+
+* 函数的提升高于变量
+* 函数内部使用var声明和外部名称相同的变量，函数就不再向上寻找
+* 匿名函数不提升
+
+## 为什么0.1 + 0.2 > 0.3
+
+js中变量以二进制表示，第1位符号，后11位指数位，最后52位尾数位
+
+0.1和0.2表示后是无限循环小数，截取后大于原值
+
+**解决方案：** (0.1 * 1000 + 0.2 * 1000) / 1000 === 0.3
+
+## 数据类型判断
+
+1. typeof
+
+    无法分辨null和object
+
+    typeof返回的是string类型并且是小写
+
+2. instanceof
+
+    只能判断对象是否存在于目标的原型链上
+
+3. constructor
+4. Object.prototype.toString.call()
+    比较好的类型判断方法，但是不能判断具体是谁的实例
+
+## instanceof实现原理
+
+```js
+function myInstanceof(left, right) {
+  let rightP = right.prototype
+  let leftP = left.__proto__
+  while (true) {
+    if (leftP == null) {
+      return false
+    }
+    if (leftP == rightP) {
+      return true
+    }
+    leftP = leftP.__proto__
+  }
+}
+```
+
+## 为什么typeof null是Object
+
+Object二进制表示为000而null全0
+
+## ===涉及到的类型转换
+
+```js
+null == Undefined // true
+string == Number // string -> Number
+Boolean == Number // Boolean -> Number
+Object == string Number Symbol // -> Object
+```
+
+## NaN === NaN 返回false
+
+用isNaN判断
+
+isNaN传入其他数据类型则先通过Number()转换
+
+## 手写call
+
+```js
+Function.prototype._call = function (obj, ...args) {
+  if (typeof this !== 'function') {
+    throw new TypeError('not a function')
+  }
+  // obj = obj || window
+  obj = obj || globalThis
+  obj.fn = this
+  const result = obj.fn(args)
+  delete obj.fn
+  return result
+}
+```
+
+## 手写apply
+
+```js
+Function.prototype._apply = function (obj, args) {
+  if (typeof this !== 'function') {
+    throw new TypeError('not a function')
+  }
+  // obj = obj || window
+  obj = obj || globalThis
+  obj.fn = this
+  const result = obj.fn(...args)
+  delete obj.fn
+  return result
+}
+```
+
+
+## 手写bind
+
+```js
+Function.prototype._bind = function (that) {
+  if (typeof this !== 'function') {
+    throw new TypeError('not a function')
+  }
+  const _this = this
+  const args = Array.prototype.slice.call(arguments, 1)
+  return function F() {
+    if (this instanceof F) {
+      return new _this(...args, ...arguments)
+    } else {
+      return _this.apply(that, args.concat(...arguments))
+    }
+  }
+}
+```
+
+## 手写new
+
+```js
+function _new(fn, ...args) {
+  let obj = {}
+  obj.__proto__ = fn.prototype
+  let result = fn.apply(obj, args)
+  return result instanceof Object ? result : obj
+}
+```
+
+## 作用域
+
+变量和函数的可用范围称作作用域
+
+## 作用域链
+
+每个函数都有一个作用域链，查找变量或者函数的时候从局部作用域到全局作用域依次查找，这些作用域的集合叫做作用域链
+
+## 执行上下文
+
+* 全局执行上下文
+    
+    创建一个全局window对象，并规定this指向window，执行js就压入栈底，关闭浏览器弹出
+
+* 函数执行上下文
+
+    每次函数调用时，会创建一个新的函数执行上下文
+
+    执行上下文分为创建阶段和执行阶段
+
+    * 创建阶段函数环境会创建变量对象：arguments、函数声明、变量声明、函数表达式声明，确定this指向，确定作用域
+
+    * 执行阶段变量赋值、函数表达式赋值，变量对象变成活跃对象
+
+* eval执行上下文
+
+## 执行栈
+
+先进后出
+
+进入执行环境，会创建执行上下文，然后压栈，执行完成时，执行上下文被销毁，进行弹栈
+
+栈底永远是全局环境的执行上下文，栈顶永远是正在执行函数的执行上下文
+
+## 闭包
+
+**定义：** 函数执行形成私有执行上下文，使得内部私有变量不受外界干扰，起到保护和保存的作用
+
+**作用:** 
+
+* 保护：避免命名冲突 
+* 保存：解决循环绑定引发的索引问题
+* 变量不会销毁：使用函数内部的变量不被垃圾回收机制回收
+
+**应用：**
+
+* 设计模式中的单例模式
+* for循环中的保留i的操作
+* 防抖和节流
+* 函数柯里化
+
+**缺点：** 内存泄漏
+
+## 原型
+
+分为隐式原型(\_\_proto__)和显式原型(prototype)，每个对象都有隐式原型，指向构造函数的显式原型，每个构造方法都有一个显式原型。
+
+所有的prototype都是对象，它的__proto__指向的是Object()的prototype
+
+所有构造函数隐式原型指向的都是Function()的显式原型
+
+Object的隐式原型是null
+
+## 原型链终点
+
+多个\_\_proto__组成的集合称为原型链
+
+instanceof就是判断某对象是否位于某构造方法的原型链上
+
+## 继承方式
+
+**原型继承：** 父类实例作为子类的原型，缺点是子类实例共享了父类构造函数的引用属性
+
+**组合继承：** 子函数中运行父函数并改变this指向，再在子函数的prototype里面new Father() ,使Father的原型中的方法也得到继承，最后改变Son的原型中的constructor，
+缺点是调用了两次父类的构造函数，优点是可以传参，不共享引用属性
+
+**寄生组合继承：** 
+
+```js
+function Father(name) {
+  this.name = name
+  this.hobby = ['篮球','足球','乒乓球']
+}
+
+Father.prototype.getName = function() {
+  console.log(this.name)
+}
+
+function Son(name, age) {
+  Father.call(this, name)
+  this.age = age
+}
+
+Son.prototype = Object.create(Father.prototype)
+Son.prototype.constructor = Son
+```
+
+**extend：** 寄生组合继承的语法糖，可以不写constructor，写了要用super继承
+
+## eventloop
+
+宏任务 -> process.nextTick -> 微任务 -> Dom操作 -> 宏任务
+
+## Promise的原理
+
+new Promise的时候，会传入一个执行函数往往是一些异步操作。Promise构造函数会进行初始化，首先是state，然后是成功返回值value和失败返回值error，接着是成功的函数队列，以及失败的函数队列，分别对应着then里边传入的两个函数，onresolved和onrejected。再者是两个函数，用来处理成功情况和失败情况，resolve和reject，在构造的时候去try执行执行函数并传入resolve和reject，如果成功，resolve函数会执行，那么状态会变成fulfilled，onresolved这个队列里的函数会依次执行；如果失败，reject函数就会执行，状态变成rejected，执行并清空失败回调函数队列。
+
+
+## html语义化的意义
+
+1. 页面清晰结构
+2. 有利于SEO、爬虫
+3. 方便设备解析（盲人阅读器）
+4. 代码可读性
+
+
+## Html5新特性
+
+1. Drag and Drop API
+2. 语义化标签           header,nav,footer,hgroup,section,article,aside,figure,time,address
+3. audio video
+4. canvas
+5. geolocation
+6. webstorage
+7. 表单控件             calender date time email url search
+8. webworker websocket
+9. 移除纯表现元素       basefont big center font s strike tt u
+10. 移除负面影响元素    frame frameset noframes

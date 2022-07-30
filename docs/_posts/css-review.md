@@ -86,3 +86,17 @@ body {
   margin: 0;
 }
 ```
+
+## ~选择器
+
+```css
+/* 波浪号表示该元素之后的所有目标元素 */
+.menu-box>input#menu-btn:checked~.menu {
+    width: 0;
+}
+
+/* 加号表示紧挨着的目标元素 */
+.menu-box>input#menu-btn:checked+label>i {
+    transform: rotate(180deg);
+}
+```
