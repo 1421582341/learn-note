@@ -11,4 +11,8 @@ vue3 取消了children的概念并推荐使用模版引用ref，但是仍可以�
 
 vue2 不允许多个mounted定义
 vue3 允许多个onMounted定义，并且会顺序执行
-很多composable函数会关系到生命周期，所以能不能定义多个将影响写法
+
+# 组件逻辑复用
+
+vue2主要是依靠mixins和extends
+vue3复用组件逻辑使用composable函数
