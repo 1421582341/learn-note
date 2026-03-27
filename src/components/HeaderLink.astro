@@ -1,0 +1,45 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+type Props = HTMLAttributes<'a'>;
+
+const { href, class: className, ...props } = Astro.props;
+
+const base = import.meta.env.BASE_URL; // 这是 "/learn-note/"
+// 确保 href 以斜杠开头且处理 base 拼接
+let normalizedHref = '';
+if (typeof href === 'string') {
+	if (href === '/') {
+		normalizedHref = base;
+	} else if (href.startsWith('/')) {
+		normalizedHref = `${base}${href.slice(1)}`;
+	} else {
+		normalizedHref = href;
+	}
+}
+
+// 确保末尾有斜杠（因为配置了 trailingSlash: 'always'）
+if (normalizedHref.startsWith('/') && !normalizedHref.endsWith('/')) {
+	normalizedHref += '/';
+}
+
+const { pathname } = Astro.url;
+// 判断激活状态：如果是首页，精确匹配；否则判断是否以该路径开头
+const isActive = href === '/' 
+	? pathname === base || pathname === `${base}/`
+	: pathname.startsWith(normalizedHref);
+---
+
+<a href={normalizedHref} class:list={[className, { active: isActive }]} {...props}>
+	<slot />
+</a>
+<style>
+	a {
+		display: inline-block;
+		text-decoration: none;
+	}
+	a.active {
+		font-weight: bolder;
+		text-decoration: underline;
+	}
+</style>

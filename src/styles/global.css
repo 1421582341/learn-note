@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --border: 240 3.7% 15.9%;
+  }
+
+  body {
+    @apply bg-[#09090b] text-zinc-200 antialiased selection:bg-zinc-800 selection:text-white;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-zinc-100 font-medium tracking-tight;
+  }
+
+  a {
+    @apply transition-colors duration-200;
+  }
+}
+
+/* 玻璃拟态导航 */
+.glass-nav {
+  @apply sticky top-0 z-50 border-b border-zinc-800 bg-black/50 backdrop-blur-md;
+}
+
+/* 文章内容区域样式 */
+.prose {
+  @apply max-w-none;
+}
+.prose pre {
+  @apply border border-zinc-800 bg-[#18181b] !important;
+}
+.prose code {
+  @apply rounded bg-zinc-800 px-1 py-0.5 text-zinc-100 before:content-none after:content-none;
+}
