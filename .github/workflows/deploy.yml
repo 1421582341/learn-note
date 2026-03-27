@@ -17,18 +17,23 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: 'npm'
+          cache: 'pnpm'
 
       - name: Install dependencies
-        # 使用 --force 彻底避开任何潜在的 NPM 依赖冲突
-        run: npm install --force
+        # pnpm 会自动按照正确的策略（包括 legacy-peer-deps 类似的处理）安装
+        run: pnpm install --no-frozen-lockfile
 
       - name: Build Astro
-        run: npm run build
+        run: pnpm run build
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
