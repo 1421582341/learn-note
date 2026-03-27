@@ -17,12 +17,23 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install, build, and upload with Astro
-        uses: withastro/action@v3
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          # 核心修复：指定 Node.js 22 版本以支持 Astro 6
           node-version: 22
-          package-manager: npm
+          cache: 'npm'
+
+      - name: Install dependencies
+        # 使用 --force 彻底避开任何潜在的 NPM 依赖冲突
+        run: npm install --force
+
+      - name: Build Astro
+        run: npm run build
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
 
   deploy:
     needs: build
