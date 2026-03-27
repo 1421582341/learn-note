@@ -20,8 +20,8 @@ jobs:
       - name: Install, build, and upload with Astro
         uses: withastro/action@v3
         with:
-          # 我们移除了不支持的 install-command
-          # .npmrc 会自动处理 legacy-peer-deps 冲突
+          # 核心修复：指定 Node.js 22 版本以支持 Astro 6
+          node-version: 22
           package-manager: npm
 
   deploy:
