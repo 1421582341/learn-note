@@ -20,8 +20,8 @@ jobs:
       - name: Install, build, and upload with Astro
         uses: withastro/action@v3
         with:
-          # 使用 --force 安装以处理之前的依赖冲突
-          install-command: npm install --force
+          # 我们移除了不支持的 install-command
+          # .npmrc 会自动处理 legacy-peer-deps 冲突
           package-manager: npm
 
   deploy:
