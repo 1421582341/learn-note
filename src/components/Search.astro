@@ -1,0 +1,130 @@
+---
+const base = import.meta.env.BASE_URL;
+---
+
+<div id="search" class="search-container ml-4"></div>
+
+<script is:inline define:vars={{ base }}>
+  window.addEventListener('DOMContentLoaded', () => {
+    // 动态加载 Pagefind 的样式和脚本
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = `${base}pagefind/pagefind-ui.css`;
+    document.head.appendChild(link);
+
+    const script = document.createElement('script');
+    script.src = `${base}pagefind/pagefind-ui.js`;
+    script.onload = () => {
+      new PagefindUI({
+        element: "#search",
+        showSubResults: true,
+        baseUrl: base,
+        bundlePath: `${base}pagefind/`,
+        translations: {
+          placeholder: "搜索文章...",
+          clear_search: "清除",
+          load_more: "加载更多",
+          search_label: "搜索",
+          filters_label: "筛选",
+          zero_results: "没有找到 [SEARCH_TERM]",
+          many_results: "找到 [COUNT] 条关于 [SEARCH_TERM] 的结果",
+          one_result: "找到 1 条关于 [SEARCH_TERM] 的结果",
+          alt_search: "没有找到 [SEARCH_TERM]，显示关于 [DIFFERENT_TERM] 的结果",
+          search_suggestion: "没有找到 [SEARCH_TERM]，尝试搜索以下术语：",
+          searching: "正在搜索 [SEARCH_TERM]..."
+        }
+      });
+    };
+    document.head.appendChild(script);
+  });
+</script>
+
+<style is:global>
+  /* 调整 Pagefind 默认变量 */
+  :root {
+    --pagefind-ui-primary: #ffffff;
+    --pagefind-ui-text: #e4e4e7; /* zinc-200 */
+    --pagefind-ui-background: #09090b;
+    --pagefind-ui-border: #27272a;
+    --pagefind-ui-tag: #27272a;
+  }
+
+  .search-container {
+    width: 250px;
+    position: relative;
+  }
+
+  /* 强制输入框文字为白色，并调整占位符颜色 */
+  #search .pagefind-ui__search-input {
+    background-color: #09090b !important;
+    border: 1px solid #27272a !important;
+    border-radius: 6px !important;
+    padding: 8px 12px 8px 40px !important; /* 为图标留出位置 */
+    font-size: 14px !important;
+    color: #ffffff !important; /* 搜索文字颜色 */
+  }
+
+  #search .pagefind-ui__search-input::placeholder {
+    color: #71717a !important; /* zinc-500 */
+  }
+
+  /* 调整搜索图标颜色和位置 */
+  #search .pagefind-ui__search-label {
+    opacity: 0.7;
+    filter: invert(1); /* 如果是黑色图标，反转颜色变成白色 */
+    left: 12px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  #search .pagefind-ui__search-clear {
+    background-color: transparent !important;
+    color: #a1a1aa !important;
+  }
+
+  #search .pagefind-ui__drawer {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 450px;
+    background: #09090b;
+    border: 1px solid #27272a;
+    border-radius: 8px;
+    margin-top: 10px;
+    padding: 1rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+    max-height: 500px;
+    overflow-y: auto;
+    z-index: 100;
+  }
+
+  /* 搜索结果文字颜色优化 */
+  #search .pagefind-ui__result-link {
+    color: #ffffff !important;
+  }
+
+  #search .pagefind-ui__result-excerpt {
+    color: #a1a1aa !important;
+  }
+
+  #search .pagefind-ui__result-excerpt mark {
+    background-color: #3f3f46 !important;
+    color: #ffffff !important;
+  }
+
+  /* 移动端适配 */
+  @media (max-width: 640px) {
+    .search-container {
+      width: 100%;
+      margin-left: 0;
+      margin-top: 1rem;
+    }
+    #search .pagefind-ui__drawer {
+      width: calc(100vw - 2rem);
+      right: auto;
+      left: 1rem;
+    }
+  }
+</style>
