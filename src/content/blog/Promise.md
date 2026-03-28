@@ -1,7 +1,7 @@
 ---
 title: "Promise术语以及异步编程注意点"
 description: "学习笔记: Promise术语以及异步编程注意点"
-pubDate: "2026-03-27"
+pubDate: "2022-06-16"
 ---
 
 

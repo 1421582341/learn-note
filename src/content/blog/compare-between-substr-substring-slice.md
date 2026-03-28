@@ -1,7 +1,7 @@
 ---
 title: "substr,substring和slice三者的比较"
 description: "学习笔记: substr,substring和slice三者的比较"
-pubDate: "2026-03-27"
+pubDate: "2022-06-11"
 ---
 
 

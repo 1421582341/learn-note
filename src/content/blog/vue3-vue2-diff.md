@@ -1,7 +1,7 @@
 ---
 title: "vue3 vue2 差异"
 description: "学习笔记: vue3 vue2 差异"
-pubDate: "2026-03-27"
+pubDate: "2024-09-11"
 ---
 
 
