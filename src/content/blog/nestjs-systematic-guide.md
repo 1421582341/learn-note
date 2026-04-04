@@ -1,7 +1,7 @@
 ---
 title: "NestJS 全方位指南：构建企业级可扩展 Node.js 应用的艺术"
 description: "深度解析 NestJS 的核心架构设计。从模块化、依赖注入到请求生命周期的完整链路，掌握 Node.js 后端开发的工业级标准。"
-pubDate: "2026-03-31"
+pubDate: "2026-04-03"
 ---
 
 在 Node.js 的后端世界里，**NestJS** 就像是 Spring (Java) 或 Angular (Frontend) 的直系亲属。它不仅仅是一个框架，更是一套**架构规范**。

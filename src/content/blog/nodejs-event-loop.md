@@ -1,7 +1,7 @@
 ---
 title: "Node.js 事件循环"
 description: "深入理解 Node.js 事件循环的工作原理、各个阶段以及宏任务与微任务的区别"
-pubDate: "2026-03-31"
+pubDate: "2026-04-01"
 ---
 
 Node.js 是基于事件驱动的异步 I/O 运行环境。理解事件循环（Event Loop）是掌握 Node.js 高性能开发的关键。

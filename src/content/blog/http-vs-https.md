@@ -1,7 +1,7 @@
 ---
 title: "HTTP vs HTTPS：安全连接的底层逻辑"
 description: "深入对比 HTTP 与 HTTPS，详细解析 SSL/TLS 握手过程及非对称加密的应用"
-pubDate: "2026-03-31"
+pubDate: "2026-03-29"
 ---
 
 在互联网上，数据传输的安全性至关重要。HTTP 与 HTTPS 的核心区别在于一个“S”（Secure），而这个安全性的背后是复杂的加密技术和协议握手。

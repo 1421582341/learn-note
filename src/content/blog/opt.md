@@ -1,7 +1,7 @@
 ---
 title: "前端性能优化"
 description: "面试鸭自用题解"
-pubDate: "2026-03-31"
+pubDate: "2026-04-04"
 ---
 
 1. 资源都上传CDN

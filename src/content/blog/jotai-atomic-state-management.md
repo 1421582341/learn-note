@@ -1,7 +1,7 @@
 ---
 title: "Jotai 深度解析：React 原子化状态管理的艺术"
 description: "为什么说 Jotai 是 React 状态管理的未来？深入理解原子（Atoms）的概念、派生状态的组合威力，以及它如何解决重渲染性能难题。"
-pubDate: "2026-03-31"
+pubDate: "2026-04-04"
 ---
 
 在 React 生态中，状态管理方案层出不穷。如果你觉得 Redux 太重，Context API 容易导致全量重渲染，而 Zustand 又稍微有点偏向命令式，那么 **Jotai** 绝对会让你眼前一亮。

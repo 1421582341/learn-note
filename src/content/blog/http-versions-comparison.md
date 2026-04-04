@@ -1,7 +1,7 @@
 ---
 title: "HTTP 1.0 / 2.0 / 3.0 演进与对比"
 description: "深入解析 HTTP 协议从 1.0 到 3.0 的核心特性变化、性能优化及底层原理"
-pubDate: "2026-03-31"
+pubDate: "2026-04-03"
 ---
 
 HTTP（HyperText Transfer Protocol）协议是互联网的基石。从 1996 年的 HTTP/1.0 到如今逐渐普及的 HTTP/3.0，每一次演进都旨在解决性能瓶颈，提升用户体验。

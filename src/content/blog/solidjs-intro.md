@@ -1,7 +1,7 @@
 ---
 title: "重新认识 SolidJS：极致性能背后的预编译与细粒度响应式"
 description: "基于 SolidJS 官方文档深度解析：为什么它不需要虚拟 DOM？组件只运行一次是怎么回事？如何正确理解 Props 代理？"
-pubDate: "2026-03-31"
+pubDate: "2026-03-30"
 ---
 
 如果你带着 React 的思维去写 SolidJS，你可能会感到困惑。SolidJS 虽然拥有极其相似的 JSX 语法，但其底层逻辑完全不同。根据 [SolidJS 官方文档](https://docs.solidjs.com/)，它是一个**预编译**的、**细粒度响应式**的 UI 库。
